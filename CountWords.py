@@ -24,14 +24,18 @@ from elasticsearch.exceptions import NotFoundError
 import argparse
 
 
+#Filters the strings containing non-letter characters
 def checkWord(word):
     for c in word:
-        if c < 'A' or ((c > 'Z') and (c < 'a')) or c > 'z':
+		#Ugly 'if' statement
+        if c < 'A' or ((c > 'Z') and (c < 'a')) or ((c > 'z') and (c < 'Ç')) or ((c > 'É') and (c < 'ô')) or
+		((c > 'Ü') and (c < 'á')) or ((c > 'Ñ') and (c < 'Á')) or ((c > 'À') and (c < 'Ó')) or ((c > 'Ó') and (c < 'Ô')) or
+		((c > Õ) and (c < 'Ú')) or c > 'Ý':
             return False
     return True
 
 
-__author__ = 'bejar'
+__author__ = 'bejar & mestre'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
