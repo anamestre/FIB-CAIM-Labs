@@ -28,9 +28,7 @@ import argparse
 def checkWord(word):
     for c in word:
 		#Ugly 'if' statement
-        if c < 'A' or ((c > 'Z') and (c < 'a')) or ((c > 'z') and (c < 'Ç')) or ((c > 'É') and (c < 'ô')) or
-		((c > 'Ü') and (c < 'á')) or ((c > 'Ñ') and (c < 'Á')) or ((c > 'À') and (c < 'Ó')) or ((c > 'Ó') and (c < 'Ô')) or
-		((c > Õ) and (c < 'Ú')) or c > 'Ý':
+        if c < 'A' or ((c > 'Z') and (c < 'a')) or ((c > 'z') and (c < 128)) or ((c > 144) and  (c < 147)) or ((c > 154) and (c < 160)) or ((c > 165) and (c < 181)) or ((c > 183) and (c < 224)) or (c == 225) or ((c > 229) and (c < 233)) or ((c > 237) and (c < 255)):
             return False
     return True
 
