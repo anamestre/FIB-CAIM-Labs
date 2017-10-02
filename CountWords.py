@@ -1,20 +1,13 @@
 """
 .. module:: CountWords
-
 CountWords
 *************
-
 :Description: CountWords
-
     Generates a list with the counts and the words in the 'text' field of the documents in an index
-
 :Authors: bejar
     
-
 :Version: 
-
 :Created on: 04/07/2017 11:58 
-
 """
 from __future__ import print_function
 from elasticsearch import Elasticsearch
@@ -59,12 +52,15 @@ if __name__ == '__main__':
 
         for v in voc:
             lpal.append((v.encode("utf8", "ignore"), voc[v]))
-
+        
         cont = 0
-        for pal, cnt in sorted(lpal, key=lambda x: x[0 if args.alpha else 1]):
+        wordCount = 5000
+        for pal, cnt in reversed(sorted(lpal, key=lambda x: x[0 if args.alpha else 1])):
             if checkWord(pal):
-                print('%d, %s' % (cnt, pal))
+                print('%d. %d, %s' % (cont, cnt, pal))
                 cont += 1
+            if cont >= wordCount:
+                break
         print('%s Words' % cont)
     except NotFoundError:
         print('Index %s does not exists' % index)
