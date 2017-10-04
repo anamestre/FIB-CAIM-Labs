@@ -14,8 +14,15 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import scan
 from elasticsearch.exceptions import NotFoundError
 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+
 import argparse
 
+
+def func(x, b, c):
+    return c/(x+b)
 
 #Filters the strings containing non-letter characters
 def checkWord(word):
@@ -54,13 +61,37 @@ if __name__ == '__main__':
             lpal.append((v.encode("utf8", "ignore"), voc[v]))
         
         cont = 0
-        wordCount = 5000
-        for pal, cnt in reversed(sorted(lpal, key=lambda x: x[0 if args.alpha else 1])):
+        wordCount = 500
+        wordFreqArray = reversed(sorted(lpal, key=lambda x: x[0 if args.alpha else 1]))
+        
+        freqArray = []
+        logFreqArray = []
+        numArray = range(1,wordCount+1)
+        logNumArray = np.log(numArray)
+    
+        
+        for pal, cnt in wordFreqArray:
             if checkWord(pal):
                 print('%d. %d, %s' % (cont, cnt, pal))
                 cont += 1
+                freqArray.append(cnt)
+                logFreqArray.append(np.log(cnt))
             if cont >= wordCount:
                 break
         print('%s Words' % cont)
+        
+        popt, pcov = curve_fit(func,numArray,freqArray)
+        print(popt)
+        
+        fitArray = []
+        for num in numArray:
+            fitArray.append(np.log(func(num,*popt)))
+        
+        plt.plot(logNumArray, logFreqArray, 'b-', label='Log of actual frequencies')
+        plt.plot(logNumArray, fitArray,'r-',label='Log of Zipf\'s fit')
+        plt.legend()
+        plt.xlabel('x = Log of the rank of the word (sorted by most frequent)')
+        plt.ylabel('y = Log of the frequency of the word')
+        plt.show()
     except NotFoundError:
         print('Index %s does not exists' % index)
