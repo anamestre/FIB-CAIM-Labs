@@ -20,9 +20,43 @@ from scipy.optimize import curve_fit
 
 import argparse
 
+a = 0.5 #Change the a parameter here.
+wordCount = 10000 #Change the word count here.
 
+#Zipf's law formula
 def func(x, b, c):
-    return c/(x+b)
+    return c/(x+b)**a
+
+def zipf_linear(numArray,freqArray,fitArray):
+    plt.plot(numArray, freqArray, 'b-', label='Actual frequencies')
+    plt.plot(numArray, fitArray,'r-',label='Zipf\'s fit')
+    plt.legend()
+    plt.xlabel('x = Rank of the word (sorted by most frequent)')
+    plt.ylabel('y = Frequency of the word')
+    plt.show()
+
+def zipf_log_plot(logNumArray,logFreqArray,logFitArray):
+    plt.plot(logNumArray, logFreqArray, 'b-', label='Log of actual frequencies')
+    plt.plot(logNumArray, logFitArray,'r-',label='Log of Zipf\'s fit')
+    plt.legend()
+    plt.xlabel('x = Log of the rank of the word (sorted by most frequent)')
+    plt.ylabel('y = Log of the frequency of the word')
+    plt.show()
+    
+def zipf_test(numArray,freqArray,logNumArray,logFreqArray):
+    popt, pcov = curve_fit(func,numArray,freqArray)
+    print('Zipf\'s optimal parameters:')
+    print('b = %d, c = %d' % (popt[0],popt[1]))
+    fitArray = []
+    logFitArray = []
+    for num in numArray:
+        fitArray.append(func(num,*popt))
+        logFitArray.append(np.log(func(num,*popt)))
+    
+    #Choose plot here
+    zipf_linear(numArray,freqArray,fitArray)
+    #zipf_log_plot(logNumArray,logFreqArray,logFitArray)
+    
 
 #Filters the strings containing non-letter characters
 def checkWord(word):
@@ -33,7 +67,7 @@ def checkWord(word):
     return True
 
 
-__author__ = 'bejar & mestre'
+__author__ = 'bejar'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -56,20 +90,17 @@ if __name__ == '__main__':
                     else:
                         voc[t] = tv['term_vectors']['text']['terms'][t]['term_freq']
         lpal = []
-
         for v in voc:
             lpal.append((v.encode("utf8", "ignore"), voc[v]))
         
         cont = 0
-        wordCount = 500
         wordFreqArray = reversed(sorted(lpal, key=lambda x: x[0 if args.alpha else 1]))
         
-        freqArray = []
-        logFreqArray = []
-        numArray = range(1,wordCount+1)
-        logNumArray = np.log(numArray)
+        freqArray = [] #Contains the frequency of the words
+        logFreqArray = [] #Contains the log of the frequencies
+        numArray = range(1,wordCount+1) #Ranges from 1 to wordCount
+        logNumArray = np.log(numArray) #Ranges from log(1) to log(wordCount)
     
-        
         for pal, cnt in wordFreqArray:
             if checkWord(pal):
                 print('%d. %d, %s' % (cont, cnt, pal))
@@ -80,18 +111,7 @@ if __name__ == '__main__':
                 break
         print('%s Words' % cont)
         
-        popt, pcov = curve_fit(func,numArray,freqArray)
-        print(popt)
+        zipf_test(numArray,freqArray,logNumArray,logFreqArray)
         
-        fitArray = []
-        for num in numArray:
-            fitArray.append(np.log(func(num,*popt)))
-        
-        plt.plot(logNumArray, logFreqArray, 'b-', label='Log of actual frequencies')
-        plt.plot(logNumArray, fitArray,'r-',label='Log of Zipf\'s fit')
-        plt.legend()
-        plt.xlabel('x = Log of the rank of the word (sorted by most frequent)')
-        plt.ylabel('y = Log of the frequency of the word')
-        plt.show()
     except NotFoundError:
         print('Index %s does not exists' % index)
