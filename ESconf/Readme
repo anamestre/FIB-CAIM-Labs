@@ -9,7 +9,12 @@ Edit elasticsearch.yaml to point to the paths of the data and the logfiles direc
 
 Start elastic search with:
 
-$ /path/to/elasticsearch/bin/elasticsearch -Epath.conf=/path/to/configuration/files
+( /opt/elasticsearch-5.4.1/ )
+
+
+$ /path/to/elasticsearch/bin/elasticsearch -Epath.conf=/tmp/ESconf
+
+( $ /opt/elasticsearch-5.4.1/bin/elasticsearch -Epath.conf=/tmp/ESconf )
 
 -----------
 
