@@ -19,8 +19,8 @@ class Route:
 # TODO: acabar classe
 class Edge:
     def __init__ (self, origin=None):
-        self.origin = ... # write appropriate value
-        self.weight = ... # write appropriate value
+        self.origin = origin
+        self.weight = 1
 
     def __repr__(self):
         return "edge: {0} {1}".format(self.origin, self.weight)
@@ -34,10 +34,14 @@ class Airport:
         self.name = name
         self.routes = []
         self.routeHash = dict()
-        self.outweight =    # write appropriate value
+        self.outweight = 0
 
     def __repr__(self):
         return "{0}\t{2}\t{1}".format(self.code, self.name, self.pageIndex)
+    
+    # TODO
+    def addEdge(self, edge):
+        self.outweight += 1
 
 edgeList = [] # list of Edge
 edgeHash = dict() # hash of edge to ease the match
@@ -54,7 +58,7 @@ def readAirports(fd):
         a = Airport()
         try:
             temp = line.split(',')
-            if len(temp[4]) != 5 :
+            if len(temp[4]) != 3 :
                 raise Exception('not an IATA code')
             a.name=temp[1][1:-1] + ", " + temp[3][1:-1]
             a.code=temp[4][1:-1]
@@ -92,15 +96,21 @@ def readRoutes(fd):
     routesText.close()
     print "There were {0} Airports with IATA code".format(cont)
 
+
 # TODO: adaptar pageRank al meu codi
 def computePageRanks():
-    n len(airportList)
-    # P = vector
-    # L = damping factor
+    n = len(airportList)
+    n2 = 1/n
+    P = [n2]*n
+    L = 0.85
     while (not stop) {
-        
-        
+        Q = [0]*n
+        for i in range(0, n - 1):
+            # TODO: w, out
+            Q[i] = L * sum(P[j]*w(j,i)/out(j) for j in range(0, n-1) '''if hi ha edge''') + (1-L)/n;
+        P = Q
     }
+    
 
 # TODO: implementar
 def outputPageRanks():
