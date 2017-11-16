@@ -103,14 +103,14 @@ def computePageRanks():
     n2 = 1/n
     P = [n2]*n
     L = 0.85
-    while (not stop) {
+    while not stop {
         Q = [0]*n
-        for i in range(0, n - 1):
-            # TODO: w, out
+        for i in range(n):
+            # TODO: w, out: 
             Q[i] = L * sum(P[j]*w(j,i)/out(j) for j in range(0, n-1) '''if hi ha edge''') + (1-L)/n;
         P = Q
     }
-    
+     
 
 # TODO: implementar
 def outputPageRanks():

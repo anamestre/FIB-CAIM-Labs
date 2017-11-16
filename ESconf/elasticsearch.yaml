@@ -1,2 +1,2 @@
-path.data: /path/to/data
-path.logs: /path/to/logs
+path.data: /tmp/data
+path.logs: /tmp/logs
