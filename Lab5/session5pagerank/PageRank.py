@@ -48,6 +48,7 @@ airportHash = dict() # hash key IATA code -> Airport
 routeList = []
 routeHash = dict()
 pageR = []
+noOut = 0
 
 
 def readAirports(fd):
@@ -124,6 +125,10 @@ def computePageRanks():
         iters = 0
         stop = False
         
+        aux = 1.0/n
+        L1 = (1.0 - L)/n
+        numberOuts = L/float(n)*noOut
+        
         while not stop:
             Q = [0.0]*n
             
@@ -135,12 +140,14 @@ def computePageRanks():
                         w = edge.weight
                         out = airportList[edge.index].outweight
                         suma += P[edge.index] * w / out 
-                        L1 = (1.0 - L)/n
-                    Q[i] = L * suma + L1
                         
+                    Q[i] = L * suma + L1 + aux*numberOuts
+            
+            aux = L1 + aux*numberOuts
+            
             val = [a_i - b_i for a_i, b_i in zip(P, Q)] 
             absolut = map(lambda v: abs(v), val) #absolute value 
-            stop = all(map(lambda v: v < 1.5 * 10**(-15), absolut)) # is it almost the same? :)
+            stop = all(map(lambda v: v < 1 * 10**(-15), absolut)) # is it almost the same? :)
             #checkSum1(Q)
             P = Q
             iters += 1
@@ -175,11 +182,18 @@ def outputPageRanks():
 def main(argv=None):
     readAirports("airports.txt")
     readRoutes("routes.txt")
+    
+    global noOut
+    noOut = len(filter(lambda n: n.outweight == 0, airportList))
 
     time1 = time.time()
     iterations = computePageRanks()
     time2 = time.time()
     outputPageRanks()
+    
+    s = sum(pageR)
+    
+    print "Sum of Page Rank: %s" %(s)
     print "#Iterations:", iterations
     print "Time of computePageRanks():", time2-time1
 
