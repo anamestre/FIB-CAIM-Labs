@@ -75,7 +75,7 @@ if __name__ == '__main__':
                 auxString = key + ':'
                 for item in new_proto[key]:
                     auxString = auxString + item[0] + '+' + repr(item[1]) + ' '
-                newProtoFile.write(auxString)
+                newProtoFile.write(auxString + '\n')
                 # If you have saved the assignments, you can check if they have changed from the previous iteration
 
         print("Time= %f seconds" % (time.time() - tinit))
