@@ -58,6 +58,7 @@ if __name__ == '__main__':
         # Runs the script
         with mr_job1.make_runner() as runner1:
             runner1.run()
+            print('does it reach')
             new_assign = {}
             new_proto = {}
             # Process the results of the script, each line one results
@@ -65,15 +66,15 @@ if __name__ == '__main__':
                 key, value = mr_job1.parse_output_line(line)
                 new_proto[key] = value
                 # You should store things here probably in a datastructure
-
+            print('does it reach')
             # If your scripts returns the new assignments you could write them in a file here
 
             # You should store the new prototypes here for the next iteration
-            newProtoFile = open(cws + '/prototypes%d.txt' %i+1)
+            newProtoFile = open(cwd + '/prototypes%d.txt' %(i+1), 'w')
             for key in new_proto:
                 auxString = key + ':'
                 for item in new_proto[key]:
-                    auxString = auxString + item[0] + '+' + item[1] + ' '
+                    auxString = auxString + item[0] + '+' + repr(item[1]) + ' '
                 newProtoFile.write(auxString)
                 # If you have saved the assignments, you can check if they have changed from the previous iteration
 

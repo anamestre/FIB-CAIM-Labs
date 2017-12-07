@@ -95,9 +95,9 @@ class MRKmeansStep(MRJob):
         #
         minDistance = -1
         assignedPrototype = 'none'
-        for key in prototypes:
-            auxDistance = jaccard(prototypes[key],lwords)
-            if(auxDistance == -1 or auxDistance < minDistance):
+        for key in self.prototypes:
+            auxDistance = self.jaccard(self.prototypes[key],lwords)
+            if(minDistance == -1 or auxDistance < minDistance):
                 minDistance = auxDistance
                 assignedPrototype = key
             
@@ -133,7 +133,7 @@ class MRKmeansStep(MRJob):
         
         returnPrototype = []
         for word in nextPrototype:
-            returnPrototype.append(word,nextPrototype[word]/float(docsInCluster))
+            returnPrototype.append((word,nextPrototype[word]/float(docsInCluster)))
     
         yield key, sorted(returnPrototype, key=lambda x: x[0])
 
