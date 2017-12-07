@@ -58,17 +58,22 @@ if __name__ == '__main__':
         # Runs the script
         with mr_job1.make_runner() as runner1:
             runner1.run()
-            print('does it reach')
             new_assign = {}
             new_proto = {}
             # Process the results of the script, each line one results
             for line in runner1.stream_output():
                 key, value = mr_job1.parse_output_line(line)
-                new_proto[key] = value
                 # You should store things here probably in a datastructure
-            print('does it reach')
+                new_proto[key] = value[1]
+                new_assign[key] = value[0]
+                
             # If your scripts returns the new assignments you could write them in a file here
-
+            newAssignFile = open(cwd + '/assignments%d.txt' %(i+1), 'w')
+            for key in new_assign:
+                auxString = key + ':'
+                for item in new_assign[key]:
+                    auxString = auxString + item + ' '
+                newAssignFile.write(auxString + '\n')
             # You should store the new prototypes here for the next iteration
             newProtoFile = open(cwd + '/prototypes%d.txt' %(i+1), 'w')
             for key in new_proto:
@@ -76,10 +81,12 @@ if __name__ == '__main__':
                 for item in new_proto[key]:
                     auxString = auxString + item[0] + '+' + repr(item[1]) + ' '
                 newProtoFile.write(auxString + '\n')
-                # If you have saved the assignments, you can check if they have changed from the previous iteration
-
+            # If you have saved the assignments, you can check if they have changed from the previous iteration
+            if new_assign==assign:
+                nomove = True
+            assign = new_assign
         print("Time= %f seconds" % (time.time() - tinit))
-
+        
         if nomove:  # If there is no changes in two consecutive iteration we can stop
             print("Algorithm converged")
             break
