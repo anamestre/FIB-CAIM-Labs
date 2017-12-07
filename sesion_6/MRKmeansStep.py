@@ -40,7 +40,7 @@ class MRKmeansStep(MRJob):
         intersectionSize = 0
         i = 0
         j = 0
-        while(i < len(prot) && j < len(doc)):
+        while(i < len(prot) and j < len(doc)):
             if prot[i][0] == doc[j]:
                 intersectionSize += 1
                 i += 1
@@ -97,10 +97,10 @@ class MRKmeansStep(MRJob):
         assignedPrototype = 'none'
         for key in prototypes:
             auxDistance = jaccard(prototypes[key],lwords)
-            if(auxDistance == -1 || auxDistance < minDistance) {
+            if(auxDistance == -1 or auxDistance < minDistance):
                 minDistance = auxDistance
                 assignedPrototype = key
-            }
+            
         # Return pair key, value
         yield assignedPrototype, lwords
 

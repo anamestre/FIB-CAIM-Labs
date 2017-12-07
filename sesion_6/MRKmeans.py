@@ -63,13 +63,19 @@ if __name__ == '__main__':
             # Process the results of the script, each line one results
             for line in runner1.stream_output():
                 key, value = mr_job1.parse_output_line(line)
+                new_proto[key] = value
                 # You should store things here probably in a datastructure
 
             # If your scripts returns the new assignments you could write them in a file here
 
             # You should store the new prototypes here for the next iteration
-
-            # If you have saved the assignments, you can check if they have changed from the previous iteration
+            newProtoFile = open(cws + '/prototypes%d.txt' %i+1)
+            for key in new_proto:
+                auxString = key + ':'
+                for item in new_proto[key]:
+                    auxString = auxString + item[0] + '+' + item[1] + ' '
+                newProtoFile.write(auxString)
+                # If you have saved the assignments, you can check if they have changed from the previous iteration
 
         print("Time= %f seconds" % (time.time() - tinit))
 
