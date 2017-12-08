@@ -1,0 +1,10 @@
+CLASS0:am+1.0 been+1.0 com+1.0 has+1.0 me+1.0 peopl+1.0 
+CLASS1:don+1.0 get+1.0 has+1.0 your+1.0 
+CLASS2:com+1.0 doe+1.0 get+1.0 know+1.0 other+1.0 some+1.0 than+1.0 them+1.0 time+1.0 
+CLASS3:ani+1.0 go+1.0 had+1.0 has+1.0 out+1.0 some+1.0 time+1.0 use+1.0 were+1.0 
+CLASS4:am+1.0 more+1.0 than+1.0 use+1.0 
+CLASS5:doe+1.0 go+1.0 just+1.0 know+1.0 like+1.0 look+1.0 make+1.0 time+1.0 were+1.0 which+1.0 
+CLASS6:ani+1.0 been+1.0 like+1.0 should+1.0 
+CLASS7:also+1.0 am+1.0 ani+1.0 been+1.0 could+1.0 don+1.0 had+1.0 he+1.0 how+1.0 know+1.0 me+1.0 more+1.0 out+1.0 say+1.0 than+1.0 them+1.0 think+1.0 we+1.0 were+1.0 
+CLASS8:am+1.0 out+1.0 were+1.0 
+CLASS9:ani+1.0 apr+1.0 com+1.0 has+1.0 just+1.0 peopl+1.0 see+1.0 some+1.0 them+1.0 up+1.0 were+1.0 

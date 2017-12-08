@@ -1,0 +1,36 @@
+ExtractData.py --index news --minfreq 0.1 --maxfreq 0.3 --numwords 200
+MRK MEANS: 
+Iteration 1 ...
+CLASS7
+CLASS8
+CLASS0
+CLASS1
+CLASS2
+CLASS3
+CLASS4
+CLASS5
+CLASS6
+CLASS9
+Time= 7.343174 seconds
+Iteration 2 ...
+CLASS2
+CLASS3
+CLASS0
+CLASS1
+CLASS8
+CLASS9
+Time= 14.684536 seconds
+Iteration 3 ...
+CLASS8
+CLASS9
+Time= 15.553978 seconds
+Iteration 4 ...
+CLASS8
+Time= 19.255669 seconds
+Iteration 5 ...
+CLASS8
+Time= 15.037523 seconds
+Algorithm converged
+PROCESS RESULTS: 
+CLASS8
+[(0.18388531883341572, 'anyon'), (0.17834898665348492, 'much'), (0.17701433514582304, 'veri'), (0.17671774592189818, 'becaus'), (0.17464162135442413, 'need')]

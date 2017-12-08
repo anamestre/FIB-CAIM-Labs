@@ -1,0 +1,10 @@
+CLASS0:drop+1.0 lie+1.0 
+CLASS1:amount+1.0 fbi+1.0 
+CLASS2:letter+1.0 print+1.0 student+1.0 
+CLASS3:andrew+1.0 appar+1.0 christ+1.0 church+1.0 express+1.0 faith+1.0 further+1.0 independ+1.0 intend+1.0 peac+1.0 perfect+1.0 proper+1.0 remain+1.0 rutger+1.0 separ+1.0 sign+1.0 spend+1.0 
+CLASS4:account+1.0 appar+1.0 consist+1.0 electron+1.0 famili+1.0 field+1.0 folk+1.0 further+1.0 observ+1.0 otherwis+1.0 rais+1.0 reach+1.0 realiz+1.0 respond+1.0 shot+1.0 site+1.0 toward+1.0 voic+1.0 washington+1.0 weapon+1.0 
+CLASS5:anti+1.0 behind+1.0 fight+1.0 front+1.0 function+1.0 gave+1.0 ground+1.0 king+1.0 land+1.0 million+1.0 minor+1.0 otherwis+1.0 realiz+1.0 remain+1.0 respond+1.0 separ+1.0 switch+1.0 
+CLASS6:andrew+1.0 basi+1.0 bike+1.0 fix+1.0 lost+1.0 paper+1.0 remain+1.0 
+CLASS7:bob+1.0 packag+1.0 
+CLASS8:andrew+1.0 belief+1.0 bibl+1.0 convert+1.0 crime+1.0 half+1.0 happi+1.0 higher+1.0 himself+1.0 million+1.0 prove+1.0 
+CLASS9:neither+1.0 proper+1.0 

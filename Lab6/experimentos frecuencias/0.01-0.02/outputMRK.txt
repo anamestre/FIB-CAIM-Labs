@@ -1,0 +1,38 @@
+ExtractData.py --index news --minfreq 0.01 --maxfreq 0.02 --numwords 200
+MRK MEANS: 
+Iteration 1 ...
+CLASS4
+CLASS6
+CLASS7
+CLASS8
+CLASS9
+Time= 9.068150 seconds
+Iteration 2 ...
+CLASS8
+CLASS9
+CLASS4
+CLASS6
+CLASS7
+Time= 5.024831 seconds
+Iteration 3 ...
+CLASS4
+CLASS6
+CLASS9
+Time= 7.169896 seconds
+Iteration 4 ...
+CLASS4
+CLASS6
+CLASS9
+Time= 6.868361 seconds
+Iteration 5 ...
+CLASS4
+CLASS6
+CLASS9
+Time= 7.649593 seconds
+PROCESS RESULTS: 
+CLASS6
+[(0.01738797395633857, 'setup'), (0.017311374952125622, 'oil'), (0.017234775947912676, 'ab'), (0.017158176943699734, 'firearm'), (0.016775181922635007, 'comparison')]
+CLASS4
+[(1.0, 'nsa'), (0.155, 'scheme'), (0.11, 'terrorist'), (0.1, 'telephon'), (0.095, 'traffic')]
+CLASS9
+[(0.1399652978600347, 'contradict'), (0.1341816078658184, 'sunday'), (0.13128976286871025, 'decent'), (0.13128976286871025, 'cis'), (0.12781954887218044, 'steven')]
