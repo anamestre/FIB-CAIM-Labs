@@ -64,6 +64,7 @@ if __name__ == '__main__':
             for line in runner1.stream_output():
                 key, value = mr_job1.parse_output_line(line)
                 # You should store things here probably in a datastructure
+                print(key)
                 new_proto[key] = value[1]
                 new_assign[key] = value[0]
                 
@@ -74,23 +75,25 @@ if __name__ == '__main__':
                 for item in new_assign[key]:
                     auxString = auxString + item + ' '
                 newAssignFile.write(auxString + '\n')
+            newAssignFile.close()
             # You should store the new prototypes here for the next iteration
             if new_assign==assign:
                 nomove = True
-                
-	    if i + 1 == args.iter or nomove:
-		newProtoFile = open(cwd + '/prototypes-final.txt', 'w')
-	    else:
-		newProtoFile = open(cwd + '/prototypes%d.txt' %(i+1), 'w')
-		
+            assign = new_assign
+            if ((i + 1) == args.iter) or nomove:
+                newProtoFile = open(cwd + '/prototypes-final.txt', 'w')
+            else:
+                newProtoFile = open(cwd + '/prototypes%d.txt' %(i+1), 'w')
+
             for key in new_proto:
                 auxString = key + ':'
                 for item in new_proto[key]:
                     auxString = auxString + item[0] + '+' + repr(item[1]) + ' '
-                newProtoFile.write(auxString + '\n')
+                auxString = auxString[:-1]
+                newProtoFile.write(auxString + '\r\n')
+            newProtoFile.close()
             # If you have saved the assignments, you can check if they have changed from the previous iteration
             
-            assign = new_assign
         print("Time= %f seconds" % (time.time() - tinit))
         
         if nomove:  # If there is no changes in two consecutive iteration we can stop

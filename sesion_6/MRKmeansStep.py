@@ -121,6 +121,7 @@ class MRKmeansStep(MRJob):
         :param values:
         :return:
         """
+        myKey = key
         nextPrototype = {}
         nextPrototypeDocs = []
         docsInCluster = 0
@@ -137,7 +138,7 @@ class MRKmeansStep(MRJob):
         for word in nextPrototype:
             returnPrototype.append((word,nextPrototype[word]/float(docsInCluster)))
     
-        yield key, (sorted(nextPrototypeDocs),sorted(returnPrototype, key=lambda x: x[0]))
+        yield myKey, (sorted(nextPrototypeDocs),sorted(returnPrototype, key=lambda x: x[0]))
 
     def steps(self):
         return [MRStep(mapper_init=self.load_data, mapper=self.assign_prototype,
