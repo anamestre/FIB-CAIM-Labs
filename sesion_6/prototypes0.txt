@@ -1,2 +1,0 @@
-CLASS0:apr+1.0 doe+1.0 don+1.0 even+1.0 go+1.0 good+1.0 had+1.0 he+1.0 just+1.0 like+1.0 me+1.0 out+1.0 see+1.0 some+1.0 think+1.0 time+1.0 up+1.0 when+1.0 who+1.0 your+1.0 
-CLASS1:don+1.0 get+1.0 had+1.0 has+1.0 how+1.0 just+1.0 make+1.0 some+1.0 than+1.0 time+1.0 up+1.0 use+1.0 well+1.0 were+1.0 your+1.0 
