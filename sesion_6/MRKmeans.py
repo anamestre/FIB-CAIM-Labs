@@ -75,15 +75,21 @@ if __name__ == '__main__':
                     auxString = auxString + item + ' '
                 newAssignFile.write(auxString + '\n')
             # You should store the new prototypes here for the next iteration
-            newProtoFile = open(cwd + '/prototypes%d.txt' %(i+1), 'w')
+            if new_assign==assign:
+                nomove = True
+                
+	    if i + 1 == args.iter or nomove:
+		newProtoFile = open(cwd + '/prototypes-final.txt', 'w')
+	    else:
+		newProtoFile = open(cwd + '/prototypes%d.txt' %(i+1), 'w')
+		
             for key in new_proto:
                 auxString = key + ':'
                 for item in new_proto[key]:
                     auxString = auxString + item[0] + '+' + repr(item[1]) + ' '
                 newProtoFile.write(auxString + '\n')
             # If you have saved the assignments, you can check if they have changed from the previous iteration
-            if new_assign==assign:
-                nomove = True
+            
             assign = new_assign
         print("Time= %f seconds" % (time.time() - tinit))
         
