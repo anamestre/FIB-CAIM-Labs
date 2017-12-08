@@ -25,7 +25,7 @@ __author__ = 'bejar'
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', default='documents.txt',  help='Data with the examples')
-    parser.add_argument('--nclust', default=2, type=int, help='Number of clusters')
+    parser.add_argument('--nclust', default=20, type=int, help='Number of clusters')
 
     args = parser.parse_args()
 

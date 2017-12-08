@@ -1,0 +1,49 @@
+Experimento jugando con los valores para mappers y reducers
+20 clases, mappers: 4, reducers: 4
+MRK MEANS: 
+Iteration 1 ...
+CLASS14
+CLASS15
+CLASS0
+CLASS1
+CLASS10
+CLASS11
+CLASS12
+CLASS13
+CLASS7
+CLASS8
+CLASS9
+CLASS16
+CLASS17
+CLASS18
+CLASS19
+CLASS2
+CLASS3
+CLASS4
+CLASS5
+CLASS6
+Time= 7.635010 seconds
+Iteration 2 ...
+CLASS7
+CLASS0
+CLASS14
+CLASS15
+CLASS17
+CLASS18
+CLASS3
+CLASS5
+Time= 15.033008 seconds
+Iteration 3 ...
+CLASS15
+CLASS17
+Time= 9.474312 seconds
+Iteration 4 ...
+CLASS15
+Time= 18.487457 seconds
+Iteration 5 ...
+CLASS15
+Time= 15.042882 seconds
+Algorithm converged
+PROCESS RESULTS: 
+CLASS15
+[(0.18524973855883672, 'anyon'), (0.17967232707534486, 'much'), (0.17832777252128879, 'veri'), (0.17802898262038744, 'becaus'), (0.17593745331407798, 'need')]
