@@ -115,5 +115,6 @@ def main(argv=None):
 	#Plot grafo comunidades
 	communitiesPlot = plot(com.as_clustering(), layout = communityGraph.layout_kamada_kawai(),target="./com-comGraph.png")
 	communitiesPlot.show()
+	
 if __name__ == "__main__":
     sys.exit(main())
