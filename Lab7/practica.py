@@ -98,7 +98,7 @@ def main(argv=None):
 	print("Max community size: " + repr(max(comSizes)))
 	
 	#Plot histograma tamaños comunidad
-	plt.hist(comSizes, bins=range(min(comSizes),max(comSizes) + 1, 1), align='left')
+	plt.hist(comSizes, bins=range(min(comSizes),max(comSizes) + 2, 1), align='left')
 	plt.ylabel('Number of communities')
 	plt.xlabel('Community size')
 	plt.savefig('plot_hist_communities.png')
