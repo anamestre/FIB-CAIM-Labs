@@ -53,7 +53,7 @@ class lsh(object):
 
         # the following stores the hashed images
         # in a python list of m dictionaries (one for each repeat)
-        self.hashes = [dict()] * self.m
+        self.hashes = [dict() for _ in range(self.m)]
 
         # now, fill it out
         self.hash_all_images()
