@@ -102,6 +102,49 @@ class lsh(object):
                 res.update(self.hashes[i][code])
         return res
 
+#############################################
+################# Nuestras funciones ################
+#############################################
+
+def distance(image1, image2):
+    dist = abs(image2 - image1)  # Això retorna la matriu diferència en valor absolut
+    return sum(map(sum, dist))  # Això retorna la suma de tots els valors de la matriu
+
+
+def bruteForceSearch(me, index):
+    img = me.data[index]
+    minDist = distance(img, me.data[0])
+    minIndex = 0
+    for i in range(1,1499):
+        dist = distance(img, me.data[i])
+        if dist < minDist:
+            minDist = dist
+            minIndex = i
+            
+    return (minDist, minIndex)            
+    
+    
+def search(me, index, candidates):
+    if len(candidates) == 0:
+        return (None, None)
+    
+    img = me.data[index]
+    minDist = -1
+    minIndex = 0
+    
+    for cand in candidates:
+        dist =  distance(img, me.data[cand])
+        if minDist == -1:
+            minDist = dist
+            minIndex = cand
+        if dist < minDist:
+            minDist = dist
+            minIndex = cand
+    
+    return minDist, minIndex
+       
+
+#############################################
 
 @timeit
 def main(argv=None):
@@ -113,13 +156,25 @@ def main(argv=None):
     print ("Running lsh.py with parameters k =", args.k, "and m =", args.m)
 
     me = lsh(args.k, args.m)
-
+    
+    distance(me.data[1500], me.data[1501])
+    
     # show candidate neighbors for first 10 test images
     for r in range(1500,1510):
         im = me.data[r]
         cands = me.candidates(im)
-        print ("there are %4d candidates for image %4d" % (len(cands), r))
-
+        print ("There are %4d candidates for image %4d" % (len(cands), r)) 
+        
+        (dist, indexIm) = bruteForceSearch(me, r)
+        print()
+        print ("Brute-force search: ")
+        print ("For image %4d , the nearest image is %4d with a distance of%4d" % (r, indexIm, dist ))
+        
+        dist, indexIm = search(me, r, cands)
+        print()
+        print ("Hashing search: ")
+        print ("For image %4d , the nearest image is %4d with a distance of%4d" % (r, indexIm, dist ))
+        
     return
 
 if __name__ == "__main__":
