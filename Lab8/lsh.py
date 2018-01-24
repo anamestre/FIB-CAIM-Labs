@@ -102,9 +102,6 @@ class lsh(object):
                 res.update(self.hashes[i][code])
         return res
 
-#############################################
-################# Nuestras funciones ################
-#############################################
 
 def distance(image1, image2):
     dist = abs(image2 - image1)  # Això retorna la matriu diferència en valor absolut
@@ -126,7 +123,7 @@ def bruteForceSearch(me, index):
     
 def search(me, index, candidates):
     if len(candidates) == 0:
-        return (None, None)
+        return (-1, -1)
     
     img = me.data[index]
     minDist = -1
@@ -154,10 +151,7 @@ def main(argv=None):
     args = parser.parse_args()    
 
     print ("Running lsh.py with parameters k =", args.k, "and m =", args.m)
-
     me = lsh(args.k, args.m)
-    
-    distance(me.data[1500], me.data[1501])
     
     # show candidate neighbors for first 10 test images
     for r in range(1500,1510):
@@ -165,15 +159,17 @@ def main(argv=None):
         cands = me.candidates(im)
         print ("There are %4d candidates for image %4d" % (len(cands), r)) 
         
-        (dist, indexIm) = bruteForceSearch(me, r)
-        print()
+        dist, indexIm = bruteForceSearch(me, r)
         print ("Brute-force search: ")
         print ("For image %4d , the nearest image is %4d with a distance of%4d" % (r, indexIm, dist ))
         
         dist, indexIm = search(me, r, cands)
-        print()
         print ("Hashing search: ")
-        print ("For image %4d , the nearest image is %4d with a distance of%4d" % (r, indexIm, dist ))
+        if dist == -1:
+            print ("There isn't a nearest image for %4d" %(r))
+        else:
+            print ("For image %4d , the nearest image is %4d with a distance of%4d" % (r, indexIm, dist ))
+        print()
         
     return
 
